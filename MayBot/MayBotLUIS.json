@@ -1,0 +1,109 @@
+{
+  "luis_schema_version": "3.2.0",
+  "versionId": "0.1",
+  "name": "MayBot",
+  "desc": "May Bot Tutorial",
+  "culture": "en-us",
+  "tokenizerVersion": "1.0.0",
+  "intents": [
+    {
+      "name": "Defence"
+    },
+    {
+      "name": "Health"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "Power"
+    }
+  ],
+  "entities": [],
+  "composites": [],
+  "closedLists": [],
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "prebuiltEntities": [],
+  "model_features": [],
+  "regex_features": [],
+  "patterns": [],
+  "utterances": [
+    {
+      "text": "are we investing in wind power?",
+      "intent": "Power",
+      "entities": []
+    },
+    {
+      "text": "are we spending enough on green energy?",
+      "intent": "Power",
+      "entities": []
+    },
+    {
+      "text": "are we spending enough on the navy?",
+      "intent": "Defence",
+      "entities": []
+    },
+    {
+      "text": "can i ask you about the health service?",
+      "intent": "Health",
+      "entities": []
+    },
+    {
+      "text": "do we need a nuclear deterrent?",
+      "intent": "Defence",
+      "entities": []
+    },
+    {
+      "text": "do we spend enough on nato?",
+      "intent": "Defence",
+      "entities": []
+    },
+    {
+      "text": "do you believe in a free health service?",
+      "intent": "Health",
+      "entities": []
+    },
+    {
+      "text": "do you think the health service is working?",
+      "intent": "Health",
+      "entities": []
+    },
+    {
+      "text": "should our aircraft carriers have planes on them?",
+      "intent": "Defence",
+      "entities": []
+    },
+    {
+      "text": "should the army been sent overseas?",
+      "intent": "Defence",
+      "entities": []
+    },
+    {
+      "text": "should we be building nuclear power stations?",
+      "intent": "Power",
+      "entities": []
+    },
+    {
+      "text": "should we be refitting our nuclear submarines?",
+      "intent": "Defence",
+      "entities": []
+    },
+    {
+      "text": "should we be removing all of our coal powered generation?",
+      "intent": "Power",
+      "entities": []
+    },
+    {
+      "text": "what are you going to do about the health service?",
+      "intent": "Health",
+      "entities": []
+    },
+    {
+      "text": "why have we stopped investing in wave power?",
+      "intent": "Power",
+      "entities": []
+    }
+  ],
+  "settings": []
+}
