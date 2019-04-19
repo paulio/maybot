@@ -328,5 +328,7 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# May Bot specific
 /MayBot/appsettings.json
 /MayBot/MayBot.bot
