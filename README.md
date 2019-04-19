@@ -9,3 +9,4 @@ The tutorials and tips this code referes to can be found at;
 * [CBSStudios YouTube Playlists Tips & Tutorials](https://www.youtube.com/channel/UCV6hjNfwhKVCiNWHkzulo1Q/playlists?view_as=subscriber)
 
 **Note: the configuration files (appsettings.json and Maybot.bot) contain fake references, so please be sure to update to use your service settings**
+PS I'm having my own war with github about these settings files, if they are not there at the time you download load then please copy over *Example.bot* and *appsettings.json-Copy*
