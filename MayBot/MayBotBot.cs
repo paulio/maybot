@@ -65,7 +65,7 @@ namespace MayBot
             Dialogs.Add(new AngryQuestions("AngryQuestions", niceQuestionsStateAccessor, loggerFactory));
 
             // Example: Used to show how keeping a scratch dialog can help when learning about a new feature
-            //// Dialogs.Add(new ScratchDialog("ScratchDialog", niceQuestionsStateAccessor, loggerFactory));
+            Dialogs.Add(new ScratchDialog("ScratchDialog", niceQuestionsStateAccessor, loggerFactory));
 
             // Example: Constructors. The following was used to show how constructor initializing occurs
             ////for (int index = 0; index < 10; index++)
@@ -118,8 +118,8 @@ namespace MayBot
                         //////}
 
                         // Example: Used to show how keeping a scratch dialog can help when learning about a new feature
-                        ////await dialogContext.BeginDialogAsync("ScratchDialog");
-                        ////return;
+                        await dialogContext.BeginDialogAsync("ScratchDialog");
+                        return;
 
                         var nextDialogId = nameof(NiceQuestions);
                         if (topScoringIntent.HasValue && topScoringIntent.Value.score < 0.5)

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AdaptiveCards;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
@@ -21,12 +23,73 @@ namespace MayBot.Dialogs
             var waterfallSteps = new WaterfallStep[]
             {
                     InitializeStateStepAsync,
+                    ShowAdpativeCardAsync,
                     PromptForNextQuestionStepAsync,
                     ResponseToNextQuestionResultStepAsync,
             };
 
             AddDialog(new WaterfallDialog("NiceQuestionsWaferfall", waterfallSteps));
-            AddDialog(new TextPrompt("AskForText"));
+            AddDialog(new TextPrompt("AskForText", AdaptiveCardVerify));
+        }
+
+        private Task<bool> AdaptiveCardVerify(PromptValidatorContext<string> promptContext, CancellationToken cancellationToken)
+        {
+            if (promptContext.Context.Activity.Value != null)
+            {
+
+            }
+
+            return Task.FromResult(true);
+        }
+
+        private async Task<DialogTurnResult> ShowAdpativeCardAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        {
+            try
+            {
+                // Get a JSON-serialized payload
+                // Your app will probably get cards from somewhere else :)
+                var json = File.ReadAllText(@"C:\Projects\MayBot\MayBot\wwwroot\MyCard.json");
+
+                // Parse the JSON 
+                AdaptiveCardParseResult result = AdaptiveCard.FromJson(json);
+
+                // Get card from result
+                AdaptiveCard card = result.Card;
+
+                // Optional: check for any parse warnings
+                // This includes things like unknown element "type"
+                // or unknown properties on element
+                IList<AdaptiveWarning> warnings = result.Warnings;
+
+                Attachment attachment = new Attachment()
+                {
+                    ContentType = AdaptiveCard.ContentType,
+                    Content = card
+                };
+
+                var opts = new PromptOptions
+                {
+                    Prompt = new Activity
+                    {
+                        Type = ActivityTypes.Message,
+                        Attachments = new List<Attachment> { attachment }
+                    },
+                };
+
+                await stepContext.Context.SendActivityAsync(opts.Prompt);
+
+                opts.Prompt = new Activity(type: ActivityTypes.Typing);
+                return await stepContext.PromptAsync("AskForText", opts);
+
+            }
+            catch (AdaptiveSerializationException ex)
+            {
+                // Failed to deserialize card 
+                // This occurs from malformed JSON
+                // or schema violations like required properties missing 
+            }
+
+            return await stepContext.NextAsync();
         }
 
         public IStatePropertyAccessor<QuestionsState> UserProfileAccessor { get; private set; }
